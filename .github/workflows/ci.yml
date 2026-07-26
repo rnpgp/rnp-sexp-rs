@@ -37,7 +37,7 @@ jobs:
     name: Spell Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: crate-ci/typos@v1.48.0
 
   # ============================================================================
@@ -49,7 +49,7 @@ jobs:
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 2
 
@@ -73,7 +73,7 @@ jobs:
     needs: preflight
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Generate Cargo.lock
         run: cargo generate-lockfile
@@ -100,7 +100,7 @@ jobs:
     needs: preflight
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -132,7 +132,7 @@ jobs:
     needs: preflight
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install cargo-machete
         uses: taiki-e/install-action@v2
@@ -151,7 +151,7 @@ jobs:
     needs: preflight
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -195,7 +195,7 @@ jobs:
             continue-on-error: true
     continue-on-error: ${{ matrix.continue-on-error || false }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Rust ${{ matrix.rust }}
         uses: dtolnay/rust-toolchain@v1
@@ -226,7 +226,7 @@ jobs:
     needs: [preflight]
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -264,7 +264,7 @@ jobs:
     needs: [preflight]
     if: needs.preflight.outputs.should_run == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
@@ -295,7 +295,7 @@ jobs:
     needs: [preflight]
     if: needs.preflight.outputs.should_run == 'true' && github.event_name == 'pull_request'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
