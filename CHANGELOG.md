@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Other
+
+- Bump actions/checkout from 4 to 7 by @[object]
+- Bump codecov/codecov-action from 4 to 7 by @[object]
+- Bump crate-ci/typos from 1.45.0 to 1.48.0 by @[object]
+- Release v0.1.0 ([#8](https://github.com/rnpgp/rnp-sexp-rs/pull/8)) by @[object]
+
 ### Added
 
 - Complete port of sexpp — full parser/serializer + all upstream tests by @[object]
