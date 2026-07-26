@@ -1,28 +1,28 @@
-//! Character classification tables for S-expression syntax.
-//!
-//! Ported from sexp-char-defs.cpp.
+//! Character classification tables. Port of sexp-char-defs.cpp.
 
-/// Whether `c` is a valid token character (not whitespace, not a delimiter).
+/// Token characters: alpha, digit, and the punctuation set defined by the
+/// S-expression spec. Note that `:` is a token char — this matters for the
+/// parser's verbatim-vs-token dispatch.
 pub fn is_token_char(c: u8) -> bool {
     matches!(
         c,
         b'a'..=b'z'
-        | b'A'..=b'Z'
-        | b'0'..=b'9'
-        | b'-'
-        | b'.'
-        | b'/'
-        | b'_'
-        | b':'
-        | b'!'
-        | b'*'
-        | b'+'
-        | b'&'
-        | b'='
-        | b'^'
-        | b'$'
-        | b'@'
-        | b'%'
+            | b'A'..=b'Z'
+            | b'0'..=b'9'
+            | b'-'
+            | b'.'
+            | b'/'
+            | b'_'
+            | b':'
+            | b'!'
+            | b'*'
+            | b'+'
+            | b'&'
+            | b'='
+            | b'^'
+            | b'$'
+            | b'@'
+            | b'%'
     )
 }
 
@@ -36,6 +36,11 @@ pub fn is_hex_digit(c: u8) -> bool {
 
 pub fn is_base64_digit(c: u8) -> bool {
     c.is_ascii_alphanumeric() || c == b'+' || c == b'/'
+}
+
+#[allow(dead_code)]
+pub fn is_alpha(c: u8) -> bool {
+    c.is_ascii_alphabetic()
 }
 
 pub fn is_whitespace(c: u8) -> bool {
@@ -59,7 +64,6 @@ pub fn hex_value(c: u8) -> u8 {
     }
 }
 
-#[allow(dead_code)]
 pub fn base64_value(c: u8) -> u8 {
     match c {
         b'A'..=b'Z' => c - b'A',
@@ -72,5 +76,4 @@ pub fn base64_value(c: u8) -> u8 {
 }
 
 #[allow(dead_code)]
-pub const BASE64_CHARS: &[u8] =
-    b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+pub const BASE64_CHARS: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
