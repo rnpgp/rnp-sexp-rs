@@ -5,10 +5,16 @@
 # and updated CHANGELOG. When that PR merges, release-plz runs again and
 # publishes the new version to crates.io.
 #
+# Uses the workflow's default `GITHUB_TOKEN` (scopes granted via the
+# `permissions:` block below) to open the release PR. The rnpgp-org-wide
+# `RNP_CI_PAT_TOKEN` exists but is currently scoped to a fixed set of
+# repositories that does not include this one — switching to `GITHUB_TOKEN`
+# avoids the 404 on ref creation. If you later want the release PR's commits
+# to trigger downstream CI workflows (which `GITHUB_TOKEN` cannot do), update
+# the PAT's repository scope to include `rnpgp/rnp-sexp-rs` and switch back.
+#
 # Secrets (configured at the rnpgp org level, visibility=all):
 #   CARGO_REGISTRY_TOKEN  — crates.io publish token
-#   RNP_CI_PAT_TOKEN      — GitHub PAT with `repo` + `workflow` scopes so the
-#                           release PR can trigger downstream CI workflows
 #
 # See: https://release-plz.dev/docs/config
 
@@ -39,5 +45,5 @@ jobs:
       - name: Run release-plz
         uses: MarcoIeni/release-plz-action@v0.5
         env:
-          GITHUB_TOKEN: ${{ secrets.RNP_CI_PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
