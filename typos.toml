@@ -1,0 +1,26 @@
+# Configuration for typos spell checker
+# See: https://github.com/crate-ci/typos
+
+[files]
+extend-exclude = ["target/", ".git/", "tests/samples/"]
+
+[default.extend-words]
+# Project-specific terms
+sexp = "sexp"
+sexpp = "sexpp"
+rnp = "rnp"
+gnupg = "gnupg"
+
+# Parser/code terms
+parser = "parser"
+parsers = "parsers"
+serializer = "serializer"
+canonical = "canonical"
+
+# Software engineering terms
+verifying = "verifying"
+
+# Common abbreviations in code
+serde = "serde"
+clippy = "clippy"
+rustfmt = "rustfmt"

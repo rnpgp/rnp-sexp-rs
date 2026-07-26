@@ -1,0 +1,34 @@
+# Release-plz configuration for rnp-sexp-rs
+#
+# Configures automatic versioning and changelog generation.
+# See: https://release-plz.dev/docs/config
+
+# Single-crate (no workspace) configuration.
+[workspace]
+# Disable auto-created GitHub releases — we publish only to crates.io.
+# The CHANGELOG.md is still updated and serves as the canonical history.
+git_release_enable = false
+
+# Update dependencies with `cargo update` as part of each release PR.
+dependencies_update = true
+
+# Changelog configuration
+[changelog]
+# Include commit body in changelog
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | upper_first }}
+{% for commit in commits %}
+- {{ commit.message | upper_first }}\
+{% if commit.breaking %} (BREAKING){% endif %}\
+{% if commit.author != "github-actions[bot]" %} by @{{ commit.author }}{% endif %}\
+{% endfor %}
+{% endfor %}
+"""
+
+# Conventional commits configuration
+# See: https://www.conventionalcommits.org/
+# - feat: minor version bump
+# - fix: patch version bump
+# - feat! or fix!: major version bump (breaking change)
+# - docs, chore, refactor, test: no version bump (just changelog)
