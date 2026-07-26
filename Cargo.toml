@@ -14,4 +14,3 @@ categories = ["parser-implementations", "encoding"]
 exclude = ["/target", "/Cargo.lock"]
 
 [dependencies]
-thiserror = "2"

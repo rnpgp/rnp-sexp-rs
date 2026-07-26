@@ -1,0 +1,28 @@
+# Git attributes
+# https://git-scm.com/docs/gitattributes
+
+# Auto-detect text files and normalize line endings to LF on commit.
+# Repos checked out on Windows retain LF (no CRLF translation).
+* text=auto eol=lf
+
+# Force these extensions to always use LF
+*.rs    text eol=lf
+*.toml  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.sh    text eol=lf
+
+# Test sample files must be byte-exact — never normalize.
+# These are S-expression key fixtures whose error positions depend on byte
+# offsets, so any newline translation would break the ported assertions.
+*.key   binary
+tests/samples/**  -text binary
+
+# Treat as binary (no diff/merge)
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.pdf   binary
+*.zip   binary
+*.gz    binary
