@@ -1,0 +1,17 @@
+[package]
+name = "rnp-sexp"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.70"
+license = "MIT"
+description = "Pure-Rust S-expression parser/serializer for OpenPGP key formats (port of librnp's sexpp)"
+repository = "https://github.com/rnpgp/rnp-sexp-rs"
+homepage = "https://github.com/rnpgp/rnp-sexp-rs"
+documentation = "https://docs.rs/rnp-sexp"
+readme = "README.md"
+keywords = ["sexp", "s-expression", "openpgp", "gnupg", "parser"]
+categories = ["parser-implementations", "encoding"]
+exclude = ["/target", "/Cargo.lock"]
+
+[dependencies]
+thiserror = "2"
