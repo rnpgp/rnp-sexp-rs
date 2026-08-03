@@ -84,7 +84,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install cargo-deny
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cargo-deny
 
@@ -135,7 +135,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Install cargo-machete
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cargo-machete
 
@@ -239,7 +239,7 @@ jobs:
           cache-on-failure: true
 
       - name: Install cargo-llvm-cov
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cargo-llvm-cov
 
@@ -308,7 +308,7 @@ jobs:
           cache-on-failure: true
 
       - name: Install cargo-semver-checks
-        uses: taiki-e/install-action@v2
+        uses: taiki-e/install-action@v2.85.5
         with:
           tool: cargo-semver-checks
 
